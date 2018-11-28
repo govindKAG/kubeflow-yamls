@@ -1,0 +1,18 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: simple-pod
+spec:
+  volumes:
+    - name: simple-storage
+      persistentVolumeClaim:
+       claimName: simple-claim
+  containers:
+    - name: simple-container
+      image: nginx
+      ports:
+        - containerPort: 80
+          name: "http-server"
+      volumeMounts:
+        - mountPath: "/usr/share/nginx/html"
+          name: simple-storage
